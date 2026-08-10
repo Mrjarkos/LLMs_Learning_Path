@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Facilitator Notes — AI Course</title>
+<style>
+:root {
+  --ink: #1a1d24; --muted: #5b6472; --line: #e4e7ec; --bg: #f7f8fa;
+  --card: #ffffff; --accent: #4f46e5; --accent-weak: #eef0ff;
+  --code-bg: #1e222b; --code-ink: #e6e9ef; --ok: #0f9d58; --warn: #b26a00;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 24px 96px; }
+header.page {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #fff; padding: 40px 0 34px; margin-bottom: 40px;
+}
+header.page .wrap { padding-bottom: 0; }
+header.page .kicker {
+  text-transform: uppercase; letter-spacing: .14em; font-size: 12px;
+  opacity: .85; margin: 0 0 8px;
+}
+header.page h1 { margin: 0; font-size: 30px; line-height: 1.15; }
+header.page p.sub { margin: 10px 0 0; opacity: .9; font-size: 16px; }
+a.back {
+  display: inline-block; margin-top: 18px; color: #fff; text-decoration: none;
+  font-size: 14px; opacity: .9; border-bottom: 1px solid rgba(255,255,255,.4);
+}
+a.back:hover { opacity: 1; }
+h1, h2, h3 { line-height: 1.25; }
+h2 {
+  margin-top: 40px; padding-bottom: 6px; border-bottom: 2px solid var(--line);
+  font-size: 22px;
+}
+h3 { margin-top: 28px; font-size: 17px; color: #2b2f38; }
+a { color: var(--accent); }
+p, li { color: #2b2f38; }
+blockquote {
+  margin: 18px 0; padding: 12px 18px; background: var(--accent-weak);
+  border-left: 4px solid var(--accent); border-radius: 6px; color: #322f6b;
+}
+code {
+  background: #eef0f3; padding: .12em .4em; border-radius: 4px;
+  font: 13.5px/1.5 "SF Mono", "Cascadia Code", Consolas, monospace; color: #b3306b;
+}
+pre {
+  background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+  border-radius: 10px; overflow-x: auto; font-size: 13.5px; line-height: 1.55;
+}
+pre code { background: none; color: inherit; padding: 0; }
+table {
+  border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 14.5px;
+  background: var(--card); border-radius: 8px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(16,24,40,.06);
+}
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { background: #f0f1f6; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+hr { border: none; border-top: 1px solid var(--line); margin: 34px 0; }
+figure { max-width: 580px; margin: 24px auto; }
+figure svg { width: 100%; height: auto; display: block; }
+ul { padding-left: 22px; }
+li.task { list-style: none; margin-left: -22px; }
+li.task .box { color: var(--muted); margin-right: 8px; }
+li.task.done .box { color: var(--ok); }
+.footer { margin-top: 60px; color: var(--muted); font-size: 13px; text-align: center; }
+/* Landing page cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px; margin-top: 8px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 20px; text-decoration: none; color: inherit; display: block;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16,24,40,.10);
+  border-color: #c7c9f5; }
+.card .tag {
+  display: inline-block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-weak); padding: 3px 8px; border-radius: 20px;
+}
+.card h3 { margin: 12px 0 6px; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+.meta { display: flex; gap: 22px; flex-wrap: wrap; margin: 24px 0 0; font-size: 14px; color: var(--muted); }
+.meta b { color: var(--ink); }
+@media print {
+  header.page { background: none; color: #000; border-bottom: 2px solid #000; }
+  header.page .kicker, a.back { color: #000; }
+  .card:hover { transform: none; box-shadow: none; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+<header class="page"><div class="wrap">
+<p class="kicker">Programming with AI Agents</p>
+<h1>Facilitator Notes</h1>
+<p class="sub">Prereqs, room setup, timing recovery</p>
+<a class="back" href="index.html">&larr; Course home</a>
+</div></header>
+<main class="wrap">
+<h1>Facilitator Notes</h1>
+<p>Everything you need around the content itself: prereqs email, room setup,
+timing recovery, and rehearsal checklist.</p>
+<hr />
+<h2>Prereqs email (send 3–4 days ahead)</h2>
+<blockquote>
+<p><strong>Subject: Bring a laptop — AI agents workshop (45 min, hands-on)</strong></p>
+<p>Hi all — this session is hands-on, so a little setup beforehand saves us
+time. Please do this before you arrive (10 min):</p>
+<ol>
+<li><strong>Install an AI coding agent</strong> — either:
+   - <strong>Copilot CLI</strong> (works with our GitHub Enterprise):
+     <code>npm install -g @github/copilot</code> then run <code>copilot</code> and sign in, <strong>or</strong>
+   - <strong>Claude Code</strong> — [install link], sign in.</li>
+<li><strong>Get the sample repo</strong> — [link to zipped <code>sample-repo/</code> or repo URL].</li>
+<li><strong>Confirm it runs</strong> — in the repo folder:
+   <code>python -m pip install -r requirements.txt
+   python -m pytest -q</code>
+   You should see <strong>3 passed, 1 failed</strong> (the failure is on purpose).</li>
+</ol>
+<p>No prior AI experience needed — just bring a working laptop and the setup
+above. Questions before the day → [your channel].</p>
+</blockquote>
+<h2>Room / tech setup (day of)</h2>
+<ul>
+<li class="task"><span class="box">&#9744;</span>Projector mirrors your terminal at <strong>≥18pt</strong> font, high contrast.</li>
+<li class="task"><span class="box">&#9744;</span>Notifications OFF (Slack/Teams/email), Do Not Disturb on.</li>
+<li class="task"><span class="box">&#9744;</span>Agent signed in, one warm-up prompt sent (pay auth/latency early).</li>
+<li class="task"><span class="box">&#9744;</span><code>sample-repo</code> clean copy staged; tests at 1-failed baseline.</li>
+<li class="task"><span class="box">&#9744;</span><code>demo-fallback/</code> (asciinema cast or screenshots) recorded and tested.</li>
+<li class="task"><span class="box">&#9744;</span>Slides rendered to PDF (<code>slides.pdf</code>) as a backup to live Marp.</li>
+<li class="task"><span class="box">&#9744;</span>Water, timer/stopwatch visible to you (phone face-up works).</li>
+<li class="task"><span class="box">&#9744;</span>Spare: a colleague or you can help-desk the room during hands-on.</li>
+</ul>
+<h2>Timing at a glance (elapsed at segment start)</h2>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>Start</th>
+<th>Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Hook</td>
+<td>00:00</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2 Mental model</td>
+<td>03:00</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3 Core skill</td>
+<td>07:30</td>
+<td>6</td>
+</tr>
+<tr>
+<td>4 Live demo</td>
+<td>13:30</td>
+<td>10</td>
+</tr>
+<tr>
+<td>5 Hands-on</td>
+<td>23:30</td>
+<td>9</td>
+</tr>
+<tr>
+<td>6 How it's built</td>
+<td>32:30</td>
+<td>9</td>
+</tr>
+<tr>
+<td>7 Takeaways</td>
+<td>40:45</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Q&amp;A / buffer</td>
+<td>43:45</td>
+<td>~1+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Poll moments + quiz:</strong> the deck has two 30-second "Quick check" poll
+slides (after mental-model, after core-skill) and an optional quiz slide
+pointing at <code>quiz.html</code>. They live inside the buffer — if you're behind,
+skip the polls first, then the quiz slide. The quiz itself is self-contained
+and great to send round afterwards regardless.</p>
+</blockquote>
+<h2>Timing recovery plan</h2>
+<ul>
+<li><strong>Running long after the demo?</strong> Hands-on is the shock absorber — cut it to
+  6 min (drop stretch goals, one checkpoint). Then trim S16 to 30s.</li>
+<li><strong>Running long after hands-on?</strong> Compress Part 5: keep S13 (agents) + S14
+  (RAG), collapse S15+S16 into "tools let it act; it runs on Databricks."</li>
+<li><strong>Running short?</strong> After S9, take one audience prompt ("what would you ask
+  it?") and critique it live. Add a second steer in the demo (Beat 6).</li>
+<li><strong>Hard stop looming?</strong> The must-keep spine is S2, S5, S7–S9, the demo, and
+  S17–S18. Everything else is expandable/collapsible.</li>
+</ul>
+<h2>Audience calibration</h2>
+<ul>
+<li><strong>All beginners:</strong> slow down Part 1, spend the saved time in hands-on.</li>
+<li><strong>Mixed/senior room:</strong> trim Part 1 to 3 min total, expand Part 5 (they'll
+  ask about RAG/MCP), invite architecture questions.</li>
+<li><strong>Skeptics in the room:</strong> lean on S18 (pitfalls) early — credibility comes
+  from naming the failure modes before they do.</li>
+</ul>
+<h2>Rehearsal checklist (do once, end to end)</h2>
+<ul>
+<li class="task"><span class="box">&#9744;</span>Render deck: <code>npx @marp-team/marp-cli slides.md --pdf</code></li>
+<li class="task"><span class="box">&#9744;</span>Dry-run the <strong>live demo</strong> on the sample repo with a stopwatch. If
+      segment 4 &gt; 12 min, trim beats.</li>
+<li class="task"><span class="box">&#9744;</span>Do the <strong>hands-on</strong> yourself cold, timed — confirm ~7 min is realistic.</li>
+<li class="task"><span class="box">&#9744;</span>Read the deck aloud against <code>speaker-script.md</code> — confirm 42–45 min.</li>
+<li class="task"><span class="box">&#9744;</span>Record <code>demo-fallback/</code> while you're at it.</li>
+</ul>
+<h2>Files in this package</h2>
+<pre><code>ai-course-beginner/
+├── index.html           # course home — open this first
+├── slides.md / .html    # Marp deck with SVG diagrams (render to HTML)
+├── quiz.html            # interactive 10-question quiz
+├── speaker-script.md    # timed notes per slide
+├── demo-runbook.md      # live-demo beats + fallbacks
+├── handout-exercise.md  # attendee hands-on sheet
+├── facilitator-notes.md # this file
+├── build_html.py        # regenerates the HTML pages
+├── assets/              # loop.svg · rag.svg · arch.svg (editable diagrams)
+└── sample-repo/         # stats-cli: seeded bug + failing test
+    ├── README.md
+    ├── requirements.txt
+    ├── stats.py
+    ├── statslib.py
+    └── test_statslib.py
+</code></pre>
+<p>Rebuild after editing any <code>.md</code>: <code>python build_html.py</code> (HTML pages) and
+<code>npx @marp-team/marp-cli slides.md --html</code> (deck).</p>
+<h2>Adapting this later</h2>
+<ul>
+<li>Swap <strong>Forge</strong> in Part 5 for whatever app you know best — the RAG/agents/MCP
+  points are generic; the specifics just need to be <em>yours</em> so you can answer
+  follow-ups.</li>
+<li>Non-Python audience: reimplement <code>sample-repo</code> in their language; keep the
+  same seeded-bug + hands-on shape.</li>
+<li>Longer slot (90 min): add a second hands-on where they write a <code>CLAUDE.md</code>
+  for their own repo and watch the agent respect it.</li>
+</ul>
+<div class="footer">CARIAD &middot; beginner AI course &middot; built from the course markdown</div>
+</main>
+</body></html>

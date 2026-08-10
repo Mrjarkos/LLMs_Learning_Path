@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaker Script — AI Course</title>
+<style>
+:root {
+  --ink: #1a1d24; --muted: #5b6472; --line: #e4e7ec; --bg: #f7f8fa;
+  --card: #ffffff; --accent: #4f46e5; --accent-weak: #eef0ff;
+  --code-bg: #1e222b; --code-ink: #e6e9ef; --ok: #0f9d58; --warn: #b26a00;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 24px 96px; }
+header.page {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #fff; padding: 40px 0 34px; margin-bottom: 40px;
+}
+header.page .wrap { padding-bottom: 0; }
+header.page .kicker {
+  text-transform: uppercase; letter-spacing: .14em; font-size: 12px;
+  opacity: .85; margin: 0 0 8px;
+}
+header.page h1 { margin: 0; font-size: 30px; line-height: 1.15; }
+header.page p.sub { margin: 10px 0 0; opacity: .9; font-size: 16px; }
+a.back {
+  display: inline-block; margin-top: 18px; color: #fff; text-decoration: none;
+  font-size: 14px; opacity: .9; border-bottom: 1px solid rgba(255,255,255,.4);
+}
+a.back:hover { opacity: 1; }
+h1, h2, h3 { line-height: 1.25; }
+h2 {
+  margin-top: 40px; padding-bottom: 6px; border-bottom: 2px solid var(--line);
+  font-size: 22px;
+}
+h3 { margin-top: 28px; font-size: 17px; color: #2b2f38; }
+a { color: var(--accent); }
+p, li { color: #2b2f38; }
+blockquote {
+  margin: 18px 0; padding: 12px 18px; background: var(--accent-weak);
+  border-left: 4px solid var(--accent); border-radius: 6px; color: #322f6b;
+}
+code {
+  background: #eef0f3; padding: .12em .4em; border-radius: 4px;
+  font: 13.5px/1.5 "SF Mono", "Cascadia Code", Consolas, monospace; color: #b3306b;
+}
+pre {
+  background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+  border-radius: 10px; overflow-x: auto; font-size: 13.5px; line-height: 1.55;
+}
+pre code { background: none; color: inherit; padding: 0; }
+table {
+  border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 14.5px;
+  background: var(--card); border-radius: 8px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(16,24,40,.06);
+}
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { background: #f0f1f6; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+hr { border: none; border-top: 1px solid var(--line); margin: 34px 0; }
+figure { max-width: 580px; margin: 24px auto; }
+figure svg { width: 100%; height: auto; display: block; }
+ul { padding-left: 22px; }
+li.task { list-style: none; margin-left: -22px; }
+li.task .box { color: var(--muted); margin-right: 8px; }
+li.task.done .box { color: var(--ok); }
+.footer { margin-top: 60px; color: var(--muted); font-size: 13px; text-align: center; }
+/* Landing page cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px; margin-top: 8px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 20px; text-decoration: none; color: inherit; display: block;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16,24,40,.10);
+  border-color: #c7c9f5; }
+.card .tag {
+  display: inline-block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-weak); padding: 3px 8px; border-radius: 20px;
+}
+.card h3 { margin: 12px 0 6px; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+.meta { display: flex; gap: 22px; flex-wrap: wrap; margin: 24px 0 0; font-size: 14px; color: var(--muted); }
+.meta b { color: var(--ink); }
+@media print {
+  header.page { background: none; color: #000; border-bottom: 2px solid #000; }
+  header.page .kicker, a.back { color: #000; }
+  .card:hover { transform: none; box-shadow: none; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+<header class="page"><div class="wrap">
+<p class="kicker">Programming with AI Agents</p>
+<h1>Speaker Script</h1>
+<p class="sub">Timed notes, slide by slide</p>
+<a class="back" href="index.html">&larr; Course home</a>
+</div></header>
+<main class="wrap">
+<h1>Speaker Script — Programming with AI Agents</h1>
+<p>Timed notes, keyed to slide numbers in <code>slides.md</code>. Times are targets, not
+gospel. Total talk ≈ 45 min. Segment 4 (hands-on) is your shock absorber:
+trim it to 6 min if demos overran, stretch to 11 if you're ahead.</p>
+<p>Running clock in <strong>[mm:ss]</strong> is elapsed-at-<em>start</em>-of-slide.</p>
+<hr />
+<h2>Part 1 — Hook (3 min)</h2>
+<h3>S1 · Title <strong>[00:00]</strong> — 30s</h3>
+<p>"Hi — I'm Niklas. Quick show of hands: who's used an AI coding tool for
+real work? … Keep that in mind. In 45 minutes you'll all have driven one on
+your own laptop. This is hands-on, so keep the lid open."</p>
+<h3>S2 · Your job just changed <strong>[00:30]</strong> — 75s</h3>
+<p>"The shift is simple but it's real: you go from <em>typing every line</em> to
+<em>directing something that types them for you</em>. The mental model I want you to
+hold all session is: senior dev plus a tireless junior. The junior is fast,
+never tired, and occasionally very confidently wrong. Your job — owning
+whether the code is correct — does not move an inch."</p>
+<h3>S3 · What you'll leave with <strong>[01:45]</strong> — 75s</h3>
+<p>"Three things. Use one today. Understand <em>why</em> it works so you're not
+cargo-culting. And know the failure modes, because that's what separates
+someone who's productive with these tools from someone who ships their
+bugs faster." Transition: "Start with the model."</p>
+<hr />
+<h2>Part 2 — Mental model (5 min)</h2>
+<h3>S4 · What an LLM is <strong>[03:00]</strong> — 90s</h3>
+<p>"Under the hood it's a next-token predictor. That sounds reductive but the
+consequences are the whole game. It's <strong>not a database</strong> — it doesn't look
+facts up, it <em>generates</em> plausible text. It's <strong>not deterministic</strong> — same
+prompt twice, different answers. So treat every output like a sharp
+colleague's first draft: often right, always worth a glance. If you remember
+one thing here: it's a reasoner, not an oracle."</p>
+<h3>S5 · What an agent is <strong>[04:30]</strong> — 90s</h3>
+<p>"An <em>agent</em> is that model put in a loop and handed tools. Read a file, edit a
+file, run a shell command, run the tests, look at the result, decide the next
+step. That's it. When people say 'AI agent' they mean this loop. Everything
+fancy — Claude Code, Copilot, the thing I build at work — is this loop with
+better tools and better plumbing."</p>
+<h3>S6 · Context window <strong>[06:00]</strong> — 90s</h3>
+<p>"The loop has a working memory: the context window. Whatever's in it is what
+the agent knows <em>right now</em>. Leave the error message out and it'll guess.
+Put the right three files in and it nails it. This is why the pros obsess over
+context: a <code>CLAUDE.md</code> with standing rules, memory files for facts across
+sessions, and <code>/compact</code> to free space in a long chat. Managing what's in the
+window <em>is</em> the skill." Transition: "So how do you actually talk to it?"</p>
+<h3>QC1 · Quick check (poll, ~30s)</h3>
+<p>Ask it as a show-of-hands <em>before</em> clicking to the answer line: "Agent's wrong
+about your private repo — retrain, add to context, or ask harder?" Let them
+vote, then: "It's context — B. It can only use what's in the window. Hold that
+thought, it comes back as RAG later." <em>Uses buffer; skip if behind.</em></p>
+<hr />
+<h2>Part 3 — Core skill (6 min)</h2>
+<h3>S7 · Instructions vs intent <strong>[07:30]</strong> — 2 min</h3>
+<p>"Biggest beginner mistake: giving instructions instead of intent. If you say
+'add a try/except on line 42', you already did the hard thinking — you're just
+using an expensive autocomplete. Instead give it the <em>goal and the
+constraints</em>: 'this endpoint 500s on bad JSON, make it fail gracefully with a
+400 and add a test.' Now it's doing the reasoning and you're doing the
+judging. That's the trade you want."</p>
+<h3>S8 · How I actually work <strong>[09:30]</strong> — 2 min</h3>
+<p>"Here's my literal loop at CARIAD. One: state high-level intent — the outcome.
+Two: trust the agent for the detail; I don't micromanage the code. Three, and
+this is non-negotiable: I review the diff. Every time. The review is where my
+fifteen years of judgement actually gets spent. I give direction and taste;
+it gives volume and speed."</p>
+<h3>S9 · Three levers <strong>[11:30]</strong> — 2 min</h3>
+<p>"Three levers beginners leave on the table. <strong>Context</strong> — paste the actual
+error, name the actual files; don't make it hunt. <strong>Plan first</strong> — tell it to
+show a plan before writing code; catching a wrong turn in a plan costs
+seconds, in a diff it costs minutes. <strong>Verify</strong> — tell it to run the tests and
+fix until green, so it checks its own work. Look at the table: same bug, two
+prompts. The right one hands over the trace and asks for verification. Watch me
+do exactly this now."</p>
+<h3>QC2 · Quick check (poll, ~30s)</h3>
+<p>Show-of-hands: "Which is <em>intent</em>, not an instruction — A, B, or C?" Answer C:
+"Goal plus constraints; the agent picks the how. That's the mode you want."
+Then straight into the demo. <em>Uses buffer; skip if behind.</em></p>
+<hr />
+<h2>Part 4 — Live demo (10 min)</h2>
+<h3>S10 · Demo <strong>[13:30]</strong> — 10 min</h3>
+<blockquote>
+<p>Drive from <code>demo-runbook.md</code>. Narrate the LOOP, not the typing.
+Key lines to say out loud:
+- (on plan) "See — it planned before touching anything. I read this like a
+  junior's proposal."
+- (on approve) "I approve, and now it edits and runs the tests itself."
+- (on green) "Green. But I still read the diff — watch."
+- (on steering) "I don't love this bit — I'll just tell it, in plain English."
+Land it: "That's the whole job. Direction, approval, review. Your turn."</p>
+</blockquote>
+<hr />
+<h2>Part 5 — Hands-on (9 min)</h2>
+<h3>S11 · Your turn <strong>[23:30]</strong> — 9 min</h3>
+<p>"Repo you cloned this morning. Task's on the slide and in the handout: add
+input validation plus a test to one function. Three checkpoints — it planned,
+tests pass, and you can explain one line it wrote. That last one matters: if
+you can't explain it, you can't own it. Stuck for a minute? Wave, I'll come
+over. Go."</p>
+<blockquote>
+<p>Circulate. Watch for: no sign-in, wrong repo, prompt too vague. Give a
+60-second warning before pulling them back.</p>
+</blockquote>
+<hr />
+<h2>Part 6 — How it's built (9 min)</h2>
+<h3>S12 · Bridge <strong>[32:30]</strong> — 45s</h3>
+<p>"Here's the fun part. The tool you just drove is <em>itself</em> an AI app. I build
+these for a living, so let me pull the curtain back with one I made: Forge."</p>
+<h3>S13 · Agents plural <strong>[33:15]</strong> — 2 min</h3>
+<p>"Forge does root-cause analysis on automotive software stacks. It's not one
+agent — it's several. A planner breaks the question down, specialists dig into
+logs and code and our stack graphs, each running that same read-plan-act loop
+from slide five. That's the reveal: an 'AI app' is usually just several agents,
+your data, and a UI on top."</p>
+<h3>S14 · RAG <strong>[35:15]</strong> — 2 min</h3>
+<p>"One concept you'll hear constantly: RAG. The model was never trained on your
+private repo, so it <em>can't</em> know it. The trick is retrieval: take the question,
+find the relevant chunks of your data, stuff them into the context, <em>then</em> let
+it answer. Forge mirrors an internal stack-graph repo into a vector store and
+pulls the relevant pieces per question. RAG is just: hand the model the right
+pages before it answers."</p>
+<h3>S15 · Tools &amp; MCP <strong>[37:15]</strong> — 2 min</h3>
+<p>"How does an agent get a new power? You hand it a typed tool description — a
+name, its inputs, what it does. I run a FastMCP server exposing twenty-odd
+curated tools. The model reads the menu, picks a tool, fills in the inputs,
+and gets a result back. Tools are how a text-predictor touches the real world
+— databases, APIs, the filesystem. MCP is just a shared standard for writing
+that menu."</p>
+<h3>S16 · Where it runs <strong>[39:15]</strong> — 1.5 min</h3>
+<p>"Wiring it together: a Databricks App is the UI, requests hit the agent loop,
+the loop calls a model through a LiteLLM gateway, and reaches out to MCP tools
+and the vector store. Notice it's the <em>same loop</em> from the mental-model
+section — just productionized. Nothing new, only bigger."</p>
+<hr />
+<h2>Part 7 — Takeaways (3 min)</h2>
+<h3>S17 · Habits <strong>[40:45]</strong> — 1 min</h3>
+<p>"Habits that make this work: small tasks, review every diff, keep a CLAUDE.md
+so you set rules once, always make it run tests, and commit often — cheap undo
+beats a perfect prompt."</p>
+<h3>S18 · Pitfalls <strong>[41:45]</strong> — 1 min</h3>
+<p>"Pitfalls to expect: it'll hallucinate an API that doesn't exist; it'll be
+fluent and wrong; over-broad prompts make a mess; and both trust extremes hurt
+— never trusting it is slow, always trusting it ships bugs. The universal fix:
+small scope plus verify."</p>
+<h3>QUIZ · Test yourself <strong>[42:15]</strong> — 30s</h3>
+<p>"There's a 10-question quiz in the pack — <code>quiz.html</code>, instant feedback, works
+offline. Do it now as a warm-down or take it with you." If the room's engaged
+and you're on time, run Q1–Q2 live on the projector; otherwise just point to
+it. <em>This slide is optional — cut it first if you're over.</em></p>
+<h3>S19 · Next steps <strong>[42:45]</strong> — 90s</h3>
+<p>"Install one of these this week, run the repo again on a task of your own, and
+read — or write — a CLAUDE.md for your project. Put your office-hours channel
+on this slide before you present. Thanks — what questions do you have?"</p>
+<blockquote>
+<p><strong>If running long:</strong> cut S16 to 30s and S13 to 90s.
+<strong>If running short:</strong> open the floor after S9 for one 'what would you ask it'
+example from the audience before the demo.</p>
+</blockquote>
+<div class="footer">CARIAD &middot; beginner AI course &middot; built from the course markdown</div>
+</main>
+</body></html>

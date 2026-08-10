@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Runbook — AI Course</title>
+<style>
+:root {
+  --ink: #1a1d24; --muted: #5b6472; --line: #e4e7ec; --bg: #f7f8fa;
+  --card: #ffffff; --accent: #4f46e5; --accent-weak: #eef0ff;
+  --code-bg: #1e222b; --code-ink: #e6e9ef; --ok: #0f9d58; --warn: #b26a00;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 24px 96px; }
+header.page {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #fff; padding: 40px 0 34px; margin-bottom: 40px;
+}
+header.page .wrap { padding-bottom: 0; }
+header.page .kicker {
+  text-transform: uppercase; letter-spacing: .14em; font-size: 12px;
+  opacity: .85; margin: 0 0 8px;
+}
+header.page h1 { margin: 0; font-size: 30px; line-height: 1.15; }
+header.page p.sub { margin: 10px 0 0; opacity: .9; font-size: 16px; }
+a.back {
+  display: inline-block; margin-top: 18px; color: #fff; text-decoration: none;
+  font-size: 14px; opacity: .9; border-bottom: 1px solid rgba(255,255,255,.4);
+}
+a.back:hover { opacity: 1; }
+h1, h2, h3 { line-height: 1.25; }
+h2 {
+  margin-top: 40px; padding-bottom: 6px; border-bottom: 2px solid var(--line);
+  font-size: 22px;
+}
+h3 { margin-top: 28px; font-size: 17px; color: #2b2f38; }
+a { color: var(--accent); }
+p, li { color: #2b2f38; }
+blockquote {
+  margin: 18px 0; padding: 12px 18px; background: var(--accent-weak);
+  border-left: 4px solid var(--accent); border-radius: 6px; color: #322f6b;
+}
+code {
+  background: #eef0f3; padding: .12em .4em; border-radius: 4px;
+  font: 13.5px/1.5 "SF Mono", "Cascadia Code", Consolas, monospace; color: #b3306b;
+}
+pre {
+  background: var(--code-bg); color: var(--code-ink); padding: 16px 18px;
+  border-radius: 10px; overflow-x: auto; font-size: 13.5px; line-height: 1.55;
+}
+pre code { background: none; color: inherit; padding: 0; }
+table {
+  border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 14.5px;
+  background: var(--card); border-radius: 8px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(16,24,40,.06);
+}
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { background: #f0f1f6; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+hr { border: none; border-top: 1px solid var(--line); margin: 34px 0; }
+figure { max-width: 580px; margin: 24px auto; }
+figure svg { width: 100%; height: auto; display: block; }
+ul { padding-left: 22px; }
+li.task { list-style: none; margin-left: -22px; }
+li.task .box { color: var(--muted); margin-right: 8px; }
+li.task.done .box { color: var(--ok); }
+.footer { margin-top: 60px; color: var(--muted); font-size: 13px; text-align: center; }
+/* Landing page cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px; margin-top: 8px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 20px; text-decoration: none; color: inherit; display: block;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16,24,40,.10);
+  border-color: #c7c9f5; }
+.card .tag {
+  display: inline-block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-weak); padding: 3px 8px; border-radius: 20px;
+}
+.card h3 { margin: 12px 0 6px; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+.meta { display: flex; gap: 22px; flex-wrap: wrap; margin: 24px 0 0; font-size: 14px; color: var(--muted); }
+.meta b { color: var(--ink); }
+@media print {
+  header.page { background: none; color: #000; border-bottom: 2px solid #000; }
+  header.page .kicker, a.back { color: #000; }
+  .card:hover { transform: none; box-shadow: none; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+<header class="page"><div class="wrap">
+<p class="kicker">Programming with AI Agents</p>
+<h1>Demo Runbook</h1>
+<p class="sub">Live-demo beats + fallbacks</p>
+<a class="back" href="index.html">&larr; Course home</a>
+</div></header>
+<main class="wrap">
+<h1>Live-Demo Runbook — Segment 4 (10 min)</h1>
+<p>The demo where you drive an agent on the <code>sample-repo</code> bug in front of the
+room. Goal: show the <strong>loop</strong> — plan → approve → edit → tests green → review →
+steer once. Narrate the loop, not the typing.</p>
+<hr />
+<h2>0. Before the talk (do this the morning of)</h2>
+<ul>
+<li class="task"><span class="box">&#9744;</span><code>git clone</code>/copy <code>sample-repo/</code> to a clean throwaway folder. <strong>Never
+      demo on a real CARIAD repo.</strong></li>
+<li class="task"><span class="box">&#9744;</span><code>python -m pip install -r requirements.txt</code></li>
+<li class="task"><span class="box">&#9744;</span><code>python -m pytest -q</code> → confirm <strong>1 failed, 3 passed</strong> (the seeded
+      median bug).</li>
+<li class="task"><span class="box">&#9744;</span>Sign in to your agent (Claude Code <em>or</em> Copilot CLI) and send ONE warm-up
+      prompt so auth/model latency is paid before you're on stage.</li>
+<li class="task"><span class="box">&#9744;</span>Font size up (terminal ≥ 18pt). Turn off notifications.</li>
+<li class="task"><span class="box">&#9744;</span>Have <code>demo-fallback/</code> ready (see §4).</li>
+</ul>
+<h2>1. Tool choice</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Primary</th>
+<th>Corporate-safe alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool</td>
+<td><strong>Claude Code</strong> (your daily driver)</td>
+<td><strong>Copilot CLI</strong> <code>@github/copilot</code> 1.0.45</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>richest agent loop, plan mode</td>
+<td>already installed, works with VW GHE</td>
+</tr>
+<tr>
+<td>Launch</td>
+<td><code>claude</code> in the repo folder</td>
+<td><code>copilot</code> in the repo folder</td>
+</tr>
+</tbody>
+</table>
+<p>Pick one to drive live; keep the other as a mental backup. Beats below are
+written tool-agnostic.</p>
+<h2>2. The beats (≈10 min)</h2>
+<p><strong>Beat 1 — show the failure (1 min).</strong> Run the tests live:</p>
+<pre><code class="language-bash">python -m pytest -q
+</code></pre>
+<p>"One red. <code>test_median_even</code> says the median of <code>[1,2,3,4]</code> should be 2.5, and
+we return 3. Let's have the agent fix it — but notice <em>how</em> I ask."</p>
+<p><strong>Beat 2 — the intent prompt (30s).</strong> Paste this (don't type it live):</p>
+<blockquote>
+<p>The test <code>test_median_even</code> in this repo fails: median of an even-length
+list should be the average of the two middle values, not the higher one.
+Show me a plan before changing anything, then fix <code>statslib.py</code> and run the
+tests until they pass.</p>
+</blockquote>
+<p><strong>Beat 3 — read the plan aloud (1.5 min).</strong> When it proposes a plan: "See — it
+planned before touching code. I read this exactly like a junior's proposal.
+Does the approach match what I'd do? Yes — average the two middle elements for
+even length." Then approve.</p>
+<p><strong>Beat 4 — let it act (1.5 min).</strong> It edits <code>statslib.py</code> and reruns pytest.
+"I'm not typing — it's editing the file and running the tests itself. That
+verify step is the one beginners skip."</p>
+<p><strong>Beat 5 — green + review the diff (2 min).</strong> Tests pass. "Green. But I always
+read the diff." Walk the diff out loud — one or two lines. "This is where my
+judgement gets spent, not in the typing."</p>
+<p><strong>Beat 6 — steer once, in plain English (2 min).</strong> Deliberately ask for a
+small improvement to show correction is conversational:</p>
+<blockquote>
+<p>Good. Now also make <code>median</code> handle an empty list by raising a clear
+ValueError instead of an IndexError, and add a test for it.
+Let it work, glance at the result.</p>
+</blockquote>
+<p><strong>Beat 7 — land it (1 min).</strong> "That's the entire job: direction, approval,
+review, steer. No magic — just the loop from slide five. Now you do it."</p>
+<h2>3. Narration cheat-sheet (say these)</h2>
+<ul>
+<li>"Watch the loop, not the typing."</li>
+<li>"It planned first — I read it like a PR description."</li>
+<li>"It ran the tests itself — verification isn't optional."</li>
+<li>"Green, but I still read the diff."</li>
+<li>"I steer in plain English, I don't hand-edit."</li>
+</ul>
+<h2>4. Fallbacks (when live fails)</h2>
+<ul>
+<li><strong>Model slow / network flaky:</strong> switch narration to the pre-recorded
+  <code>asciinema</code> cast (<code>asciinema play demo-fallback/median-fix.cast</code>) or the
+  screenshot deck in <code>demo-fallback/</code>. Record this the day before.</li>
+<li><strong>Agent goes sideways:</strong> you have the canned prompts above — re-paste
+  verbatim rather than improvising under pressure.</li>
+<li><strong>Total outage:</strong> talk the audience through the screenshots; the <em>loop</em> is
+  the lesson, live execution is the garnish.</li>
+<li><strong>Time blown:</strong> skip Beat 6 (the steer) entirely — Beats 1–5 make the point.</li>
+</ul>
+<h2>5. Reset between rehearsals</h2>
+<pre><code class="language-bash">git checkout -- statslib.py test_statslib.py   # or restore from a clean copy
+python -m pytest -q                            # back to 1 failed, 3 passed
+</code></pre>
+<div class="footer">CARIAD &middot; beginner AI course &middot; built from the course markdown</div>
+</main>
+</body></html>

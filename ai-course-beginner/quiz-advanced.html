@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 2 — Scenarios</title>
+<style>
+:root{--ink:#1a1d24;--muted:#5b6472;--line:#e4e7ec;--bg:#f7f8fa;--card:#fff;
+  --accent:#4f46e5;--accent-weak:#eef0ff;--ok:#0f9d58;--ok-weak:#e7f6ee;
+  --bad:#d93838;--bad-weak:#fdecec}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 100px}
+header.page{background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);color:#fff;padding:38px 0 30px}
+header.page .wrap{padding-bottom:0}
+.kicker{text-transform:uppercase;letter-spacing:.14em;font-size:12px;opacity:.85;margin:0 0 8px}
+header.page h1{margin:0;font-size:28px}
+header.page p{margin:8px 0 0;opacity:.9}
+.top-links{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+a.back{color:#fff;text-decoration:none;font-size:14px;opacity:.9;border-bottom:1px solid rgba(255,255,255,.4)}
+a.switch{background:rgba(255,255,255,.18);color:#fff;text-decoration:none;font-size:13px;font-weight:700;
+  padding:5px 12px;border-radius:20px}
+a.switch:hover{background:rgba(255,255,255,.3)}
+.bar{position:sticky;top:0;z-index:5;background:rgba(247,248,250,.92);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);padding:12px 0}
+.bar .wrap{padding-bottom:0;display:flex;align-items:center;gap:16px}
+.progress{flex:1;height:8px;background:#e6e8ee;border-radius:20px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.score{font-weight:700;font-size:14px;white-space:nowrap}
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:22px 0;
+  box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.q .n{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.q h3{margin:6px 0 16px;font-size:18px;line-height:1.4}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;
+  padding:12px 14px;margin:9px 0;cursor:pointer;transition:border-color .12s,background .12s}
+.opt:hover{border-color:#c7c9f5;background:#fafaff}
+.opt input{margin-top:3px}
+.opt .k{font-weight:700;color:var(--muted);min-width:18px}
+.opt.correct{border-color:var(--ok);background:var(--ok-weak)}
+.opt.incorrect{border-color:var(--bad);background:var(--bad-weak)}
+.opt.locked,.opt.locked:hover{cursor:default;background:inherit}
+.explain{display:none;margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--accent-weak);
+  color:#322f6b;font-size:14.5px}
+.explain.show{display:block}
+.explain b{color:var(--ok)}
+.explain.miss b{color:var(--bad)}
+.controls{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+button{font:inherit;font-weight:700;border:none;border-radius:10px;padding:12px 22px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff}
+button.primary:disabled{opacity:.45;cursor:not-allowed}
+button.ghost{background:#fff;color:var(--accent);border:1.5px solid #c7c9f5}
+.result{display:none;background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:26px;margin:24px 0;text-align:center}
+.result.show{display:block}
+.result .big{font-size:44px;font-weight:800;color:var(--accent);margin:0}
+.result p{margin:8px 0 0;color:var(--muted)}
+.result a.next{display:inline-block;margin-top:14px;color:var(--accent);font-weight:700;text-decoration:none}
+.footer{margin-top:50px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<header class="page"><div class="wrap">
+<p class="kicker">Programming with AI Agents · Level 2</p>
+<h1>Level 2 — Scenarios</h1>
+<p>10 harder, situational questions · for once the basics click</p>
+<div class="top-links">
+  <a class="back" href="index.html">&larr; Course home</a>
+  <a class="switch" href="quiz.html">← Back to Level 1</a>
+</div>
+</div></header>
+<div class="bar"><div class="wrap">
+<div class="progress"><i id="pbar"></i></div>
+<div class="score" id="score">0 / 10 answered</div>
+</div></div>
+<main class="wrap">
+<div id="quiz"></div>
+<div class="result" id="result">
+  <p class="big" id="resultScore">0 / 10</p>
+  <p id="resultMsg"></p>
+  <a class="next" href="index.html">Back to course home &rarr;</a>
+</div>
+<div class="controls">
+  <button class="primary" id="submit" disabled>Show my score</button>
+  <button class="ghost" id="reset">Reset</button>
+</div>
+<div class="footer">CARIAD &middot; beginner AI course &middot; self-contained quiz</div>
+</main>
+<script>
+const QUESTIONS = [{"q": "Three hours into a session the agent starts making mistakes it wasn't making earlier. Most likely cause?", "opts": ["The model silently downgraded", "The context filled with stale, irrelevant history — compact or restart with a focused context", "You need a bigger model", "The repo got too large"], "correct": 1, "why": "A bloated context dilutes what matters. Reset or /compact and re-seed with only the relevant files."}, {"q": "When is RAG the right tool instead of fine-tuning?", "opts": ["When you want the model to memorize your data permanently", "When the knowledge is private or changes often and must be grounded per query", "When you have huge GPU budget", "When latency doesn't matter"], "correct": 1, "why": "Fine-tuning bakes knowledge in and goes stale; RAG retrieves current, private data at query time."}, {"q": "Best way to stop an agent inventing a library API that doesn't exist?", "opts": ["Tell it “don't hallucinate”", "Put the real docs/types in context and make it run the code", "Use a higher temperature", "Ask the same question twice"], "correct": 1, "why": "Ground it in real signatures and let execution be the judge. Instructions to ‘be careful’ don't help."}, {"q": "The agent's plan looks right except for one step you're unsure about. Best move?", "opts": ["Approve and see what happens", "Reject the whole plan and start over", "Ask it to explain that step's tradeoff before you approve", "Rewrite the step yourself immediately"], "correct": 2, "why": "Cheap to interrogate a plan, expensive to unwind a bad diff. Make it justify the doubtful step."}, {"q": "You want consistent agent behavior across a whole team. Strongest lever?", "opts": ["Everyone writes longer prompts", "A checked-in project rules file (e.g. CLAUDE.md)", "A shared Slack channel of tips", "A bigger model for everyone"], "correct": 1, "why": "Encode standing rules once in-repo so every session and teammate inherits them — not re-typed per prompt."}, {"q": "A tool call returns an error and the agent plows on as if it succeeded. What does this highlight?", "opts": ["Tools are unreliable", "The observe step matters — tool errors must be surfaced back into the loop", "You should remove that tool", "The model is broken"], "correct": 1, "why": "The loop only self-corrects if it observes outcomes. Swallowed errors break the read→plan→act→observe cycle."}, {"q": "Which task is the poorest fit for a single agentic session?", "opts": ["Fix one failing test", "Add validation to one function", "Refactor 200 files across the codebase in one shot", "Write a small CLI flag"], "correct": 2, "why": "It won't fit in context and can't be verified in one pass. Decompose big work into reviewable slices."}, {"q": "The agent claims “all tests pass” but you never saw it run them. Correct response?", "opts": ["Trust it — it's usually right", "Ask it to show the actual test command and its output", "Re-ask the question", "Commit and move on"], "correct": 1, "why": "Trust nothing unverified. Make the evidence visible — the command and the real output."}, {"q": "Designing an MCP tool, what most determines whether the LLM uses it well?", "opts": ["Raw execution speed", "A clear name, typed inputs, and a precise description of what it does", "Returning as much data as possible", "Hiding it behind auth"], "correct": 1, "why": "The model picks and fills tools from their schema. Ambiguous schemas → wrong or unused tools."}, {"q": "Two agents give different answers to the same question even at ‘temperature 0’. Why is that possible?", "opts": ["One is a better model", "LLM serving isn't guaranteed deterministic, and their context/tool results can differ — verify, don't average", "Temperature 0 is a myth", "The question was malformed"], "correct": 1, "why": "Determinism isn't guaranteed in practice, and different retrieved context changes outputs. Verification beats vote-averaging."}];
+const PERFECT_MSG = "Outstanding \u2014 you're thinking like a practitioner now.";
+
+const quizEl=document.getElementById('quiz');
+const answers=new Array(QUESTIONS.length).fill(null);
+let locked=false;
+QUESTIONS.forEach((item,i)=>{
+  const card=document.createElement('div');card.className='q';
+  const letters=['A','B','C','D'];
+  card.innerHTML=`<div class="n">Question ${i+1}</div><h3>${item.q}</h3>`;
+  item.opts.forEach((text,j)=>{
+    const label=document.createElement('label');label.className='opt';
+    label.innerHTML=`<input type="radio" name="q${i}" value="${j}"><span class="k">${letters[j]}</span><span>${text}</span>`;
+    label.querySelector('input').addEventListener('change',()=>{if(locked)return;answers[i]=j;updateProgress();});
+    card.appendChild(label);
+  });
+  const ex=document.createElement('div');ex.className='explain';ex.id=`ex${i}`;card.appendChild(ex);
+  quizEl.appendChild(card);
+});
+function updateProgress(){
+  const done=answers.filter(a=>a!==null).length;
+  document.getElementById('pbar').style.width=(done/QUESTIONS.length*100)+'%';
+  document.getElementById('score').textContent=`${done} / ${QUESTIONS.length} answered`;
+  document.getElementById('submit').disabled=done<QUESTIONS.length;
+}
+document.getElementById('submit').addEventListener('click',()=>{
+  if(locked)return;locked=true;let correct=0;
+  QUESTIONS.forEach((item,i)=>{
+    const opts=quizEl.querySelectorAll(`.q:nth-child(${i+1}) .opt`);
+    opts.forEach(o=>{o.classList.add('locked');o.querySelector('input').disabled=true;});
+    const chosen=answers[i];const ex=document.getElementById(`ex${i}`);
+    if(chosen===item.correct){correct++;opts[chosen].classList.add('correct');ex.innerHTML=`<b>Correct.</b> ${item.why}`;}
+    else{if(chosen!==null)opts[chosen].classList.add('incorrect');opts[item.correct].classList.add('correct');
+      ex.className='explain miss';ex.innerHTML=`<b>Not quite.</b> ${item.why}`;}
+    ex.classList.add('show');
+  });
+  const pct=Math.round(correct/QUESTIONS.length*100);
+  const msg=pct===100?PERFECT_MSG:pct>=70?"Solid. Skim the explanations on the ones you missed.":
+    "Good start — revisit the slides and try again.";
+  document.getElementById('resultScore').textContent=`${correct} / ${QUESTIONS.length}  (${pct}%)`;
+  document.getElementById('resultMsg').textContent=msg;
+  document.getElementById('result').classList.add('show');
+  document.getElementById('submit').disabled=true;
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('reset').addEventListener('click',()=>location.reload());
+
+</script>
+</body></html>

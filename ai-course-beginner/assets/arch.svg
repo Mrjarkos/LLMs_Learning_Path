@@ -1,0 +1,45 @@
+<svg viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Architecture: user to Databricks App to the agent loop, which calls a model via a LiteLLM gateway and reaches MCP tools and a vector store">
+  <defs>
+    <marker id="archArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#4f46e5"/>
+    </marker>
+  </defs>
+
+  <!-- top row -->
+  <rect x="40"  y="40" width="160" height="60" rx="12" fill="#ffffff" stroke="#c7c9f5" stroke-width="2"/>
+  <text x="120" y="76" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1d24">User</text>
+
+  <rect x="650" y="40" width="230" height="60" rx="12" fill="#ffffff" stroke="#c7c9f5" stroke-width="2"/>
+  <text x="765" y="70" text-anchor="middle" font-size="17" font-weight="600" fill="#1a1d24">Model</text>
+  <text x="765" y="89" text-anchor="middle" font-size="12" fill="#5b6472">(the LLM)</text>
+
+  <!-- middle row -->
+  <rect x="40"  y="170" width="200" height="64" rx="12" fill="#eef0ff" stroke="#4f46e5" stroke-width="2.5"/>
+  <text x="140" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#312e81">Databricks App</text>
+  <text x="140" y="220" text-anchor="middle" font-size="12" fill="#5b6472">(UI)</text>
+
+  <rect x="330" y="163" width="220" height="78" rx="14" fill="#4f46e5" stroke="#4338ca" stroke-width="2.5"/>
+  <text x="440" y="197" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">Agent loop</text>
+  <text x="440" y="219" text-anchor="middle" font-size="12" fill="#dfe2ff">read &#8594; plan &#8594; act</text>
+
+  <rect x="650" y="170" width="230" height="64" rx="12" fill="#eef0ff" stroke="#4f46e5" stroke-width="2.5"/>
+  <text x="765" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#312e81">LiteLLM gateway</text>
+  <text x="765" y="220" text-anchor="middle" font-size="12" fill="#5b6472">(routes to the model)</text>
+
+  <!-- bottom row -->
+  <rect x="300" y="310" width="150" height="58" rx="12" fill="#ffffff" stroke="#c7c9f5" stroke-width="2"/>
+  <text x="375" y="338" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1d24">MCP tools</text>
+  <text x="375" y="356" text-anchor="middle" font-size="11" fill="#5b6472">(touch the world)</text>
+
+  <rect x="470" y="310" width="150" height="58" rx="12" fill="#ffffff" stroke="#c7c9f5" stroke-width="2"/>
+  <text x="545" y="338" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1d24">Vector store</text>
+  <text x="545" y="356" text-anchor="middle" font-size="11" fill="#5b6472">(your data / RAG)</text>
+
+  <!-- arrows -->
+  <line x1="120" y1="100" x2="120" y2="170" stroke="#4f46e5" stroke-width="3" marker-end="url(#archArrow)"/>
+  <line x1="240" y1="202" x2="318" y2="202" stroke="#4f46e5" stroke-width="3" marker-end="url(#archArrow)"/>
+  <line x1="550" y1="202" x2="638" y2="202" stroke="#4f46e5" stroke-width="3" marker-end="url(#archArrow)"/>
+  <line x1="765" y1="170" x2="765" y2="102" stroke="#4f46e5" stroke-width="3" marker-end="url(#archArrow)"/>
+  <line x1="415" y1="241" x2="380" y2="308" stroke="#4f46e5" stroke-width="3" marker-end="url(#archArrow)"/>
+  <line x1="470" y1="241" x2="535" y2="308" stroke="#4f46e5" stroke-width="3" marker-end="url(#archArrow)"/>
+</svg>
